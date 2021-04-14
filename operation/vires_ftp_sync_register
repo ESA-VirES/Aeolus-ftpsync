@@ -1,0 +1,9 @@
+/var/log/vires/*.log {
+    su vires vires
+    copytruncate
+    weekly
+    minsize 1M
+    rotate 560
+    compress
+    missingok
+}

@@ -1,0 +1,30 @@
+##### ftp_mirror to ESA aeolus
+##### ftp download of the DATA files
+46 * * * *  /bin/python3 /usr/local/vires/ftp_mirror_and_register/ftp_mirror_ctrl.py  /usr/local/vires/ftp_mirror_and_register/ftp_data_config.ini
+#55 */4 * * *  python /usr/local/vires/ftp_mirror_and_register/ftp_mirror_ctrl.py  /usr/local/vires/ftp_mirror_and_register/ftp_data_config.ini
+### to run it pseudo-manual
+##05 17 30 03 *  /bin/python3 /usr/local/vires/ftp_mirror_and_register/ftp_mirror_ctrl.py  /usr/local/vires/ftp_mirror_and_register/ftp_data_config.ini
+##### ftp download of the AUX files
+40 * * * *  /bin/python3 /usr/local/vires/ftp_mirror_and_register/ftp_mirror_ctrl.py  /usr/local/vires/ftp_mirror_and_register/ftp_aux_config.ini
+#40 */4 * * *  python /usr/local/vires/ftp_mirror_and_register/ftp_mirror_ctrl.py  /usr/local/vires/ftp_mirror_and_register/ftp_aux_config.ini
+### to run it pseudo-manual
+##05 17 30 03 *  /bin/python3 /usr/local/vires/ftp_mirror_and_register/ftp_mirror_ctrl.py  /usr/local/vires/ftp_mirror_and_register/ftp_aux_config.ini
+##### ftp download of the CAL files
+43 * * * *  /bin/python3 /usr/local/vires/ftp_mirror_and_register/ftp_mirror_ctrl.py  /usr/local/vires/ftp_mirror_and_register/ftp_cal_config.ini
+#45 */4 * * *  /bin/python3 /usr/local/vires/ftp_mirror_and_register/ftp_mirror_ctrl.py  /usr/local/vires/ftp_mirror_and_register/ftp_cal_config.ini
+### to run it pseudo-manual
+##05 17 30 03 *  python /usr/local/vires/ftp_mirror_and_register/ftp_mirror_ctrl.py  /usr/local/vires/ftp_mirror_and_register/ftp_cal_config.ini
+##### ftp download of the MET files
+59 * * * *  /bin/python3 /usr/local/vires/ftp_mirror_and_register/ftp_mirror_ctrl.py  /usr/local/vires/ftp_mirror_and_register/ftp_met_config.ini
+##### download Surface Albedo Data monthly means ADAM ESA database
+##* * 2 * *  python /usr/local/vires/ftp_mirror_and_register/ftp_get_ancillary.py  /usr/local/vires/ftp_mirror_and_register/ftp_albedo_config.ini
+## run the chksum validation script
+#35 4 * * 7  /bin/nice -n 15 /usr/local/vires/ftp_mirror_and_register/validate_checksum.sh
+## run the optimized moving/linking products script
+15 0 * * * /usr/local/vires/ftp_mirror_and_register/mv_optimized_aeolus_prod.sh
+## run the download of the Public_Product_List and link them to collection
+35 * * * * /usr/local/vires/ftp_mirror_and_register/aeolus_proc_pubdata.py /usr/local/vires/ftp_mirror_and_register/ftp_pubdata_config.ini
+## run aeolus optimizing script
+#*/4 * * * *  /bin/python3 /usr/local/vires/ftp_mirror_and_register/aeolus_optimize_data.py
+5 * * * *  /bin/python3 /usr/local/vires/ftp_mirror_and_register/aeolus_optimize_data.py
+
